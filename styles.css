@@ -384,6 +384,8 @@ a.contact-row:hover { color: var(--cream); }
 /* ============ RESPONSIVE ============ */
 @media (max-width: 900px) {
   .main-nav { display: none; }
+  .float-vinyl { left: auto; right: 6%; bottom: 24px; }
+  .float-vinyl svg { width: 56px; height: 56px; }
   .about-inner { grid-template-columns: 1fr; }
   .portrait-wrap { max-width: 24rem; margin: 0 auto; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
