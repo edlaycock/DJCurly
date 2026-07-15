@@ -63,4 +63,4 @@ Everything editable lives in `index.html`:
 - **Social links** — the Instagram/Facebook buttons are placeholders (`href="#"`); drop in the real profile URLs
 - **Photos** — swap files in `assets/` (keep the same filenames, or update the `src` in `index.html`)
 
-The booking form has no backend: submitting opens the visitor's email app with the details pre-filled, addressed to hello@djcurly.co.uk. If you'd rather receive submissions without relying on the visitor's email client, wire the form to a service such as Formspree or a small server-side handler.
+The booking form submits through [FormSubmit](https://formsubmit.co), which emails each request to **hello@djcurly.co.uk** — no server code needed. One-time setup: the first submission triggers an activation email to hello@djcurly.co.uk; click the confirmation link in it and all future submissions arrive normally. If FormSubmit is ever unreachable, the form falls back to opening the visitor's email app pre-addressed to hello@djcurly.co.uk.
