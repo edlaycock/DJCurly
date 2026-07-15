@@ -16,6 +16,24 @@ design/       Original Claude Design handoff bundle (reference only — not serv
 
 ## Going live
 
+### Hostinger (current host)
+
+In **Websites → djcurly.co.uk → Deployments → Settings**, use:
+
+| Setting          | Value           |
+| ---------------- | --------------- |
+| Framework preset | Other           |
+| Branch           | main            |
+| Root directory   | ./              |
+| Build command    | `npm run build` |
+| Package manager  | npm             |
+| Output directory | `dist`          |
+| Entry file       | *(leave empty)* |
+
+The "build" simply copies the static files into `dist/`, which Hostinger serves.
+
+### Any other host
+
 Point any web server at the repository root (or copy the files into your web root). For example:
 
 ```bash
