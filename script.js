@@ -1,3 +1,34 @@
+// Gallery framing: reproduces the crop/zoom set in the original design.
+// data-s = zoom, data-x/data-y = pan (% of frame), data-fit = baseline
+// (cover fills the frame, contain letterboxes before zoom).
+document.querySelectorAll('[data-frame]').forEach(function (frame) {
+  var img = frame.querySelector('img');
+  var s = parseFloat(frame.dataset.s || '1');
+  var x = parseFloat(frame.dataset.x || '0');
+  var y = parseFloat(frame.dataset.y || '0');
+  var contain = frame.dataset.fit === 'contain';
+
+  function apply() {
+    var iw = img.naturalWidth, ih = img.naturalHeight;
+    var fw = frame.clientWidth, fh = frame.clientHeight;
+    if (!iw || !ih || !fw || !fh) return;
+    var base = contain ? Math.min(fw / iw, fh / ih) : Math.max(fw / iw, fh / ih);
+    var k = base * s;
+    img.style.position = 'absolute';
+    img.style.maxWidth = 'none';
+    img.style.width = (iw * k / fw * 100) + '%';
+    img.style.height = (ih * k / fh * 100) + '%';
+    img.style.left = (50 + x) + '%';
+    img.style.top = (50 + y) + '%';
+    img.style.transform = 'translate(-50%, -50%)';
+    img.style.objectFit = '';
+  }
+
+  if (img.complete) apply();
+  img.addEventListener('load', apply);
+  new ResizeObserver(apply).observe(frame);
+});
+
 // Booking form: submits via FormSubmit (formsubmit.co), which emails the
 // request to hello@djcurly.co.uk — no backend needed on this host.
 // If that service is unreachable, falls back to opening the visitor's
