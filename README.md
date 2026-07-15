@@ -55,6 +55,11 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
+> **Cache busting:** Hostinger's CDN caches CSS/JS for 7 days. When you change
+> `styles.css`, `script.js` or the fonts, bump the `?v=N` query string on their
+> `<link>`/`<script>` tags in `index.html` so visitors get the new version
+> immediately.
+
 ## Editing content
 
 Everything editable lives in `index.html`:
