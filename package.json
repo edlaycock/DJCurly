@@ -4,6 +4,6 @@
   "private": true,
   "description": "DJ Curly — static one-page site. The build just copies the files into dist/.",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cp -r index.html styles.css script.js assets dist/"
+    "build": "rm -rf dist && mkdir dist && cp -r index.html styles.css script.js robots.txt sitemap.xml llms.txt assets dist/"
   }
 }
