@@ -1,29 +1,61 @@
-// Booking form: opens the visitor's email client with the request pre-filled,
-// addressed to hello@djcurly.co.uk (no server required for a static host).
+// Booking form: submits via FormSubmit (formsubmit.co), which emails the
+// request to hello@djcurly.co.uk — no backend needed on this host.
+// If that service is unreachable, falls back to opening the visitor's
+// email client with the request pre-filled.
 document.getElementById('booking-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
-  const data = new FormData(this);
-  const name = data.get('name') || '';
-  const email = data.get('email') || '';
-  const date = data.get('date') || 'TBC';
-  const venue = data.get('venue') || 'TBC';
-  const message = data.get('message') || '';
+  var form = this;
+  var button = form.querySelector('button[type="submit"]');
+  var sent = document.getElementById('form-sent');
+  var data = new FormData(form);
 
-  const subject = 'Booking request — ' + name;
-  const body =
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    'Event date: ' + date + '\n' +
-    'Venue / town: ' + venue + '\n\n' +
-    'About the night:\n' + message;
+  var name = data.get('name') || '';
+  var email = data.get('email') || '';
+  var date = data.get('date') || 'TBC';
+  var venue = data.get('venue') || 'TBC';
+  var message = data.get('message') || '';
 
-  window.location.href =
-    'mailto:hello@djcurly.co.uk?subject=' + encodeURIComponent(subject) +
-    '&body=' + encodeURIComponent(body);
+  function showSent() {
+    form.reset();
+    sent.hidden = false;
+    setTimeout(function () { sent.hidden = true; }, 8000);
+  }
 
-  this.reset();
-  const sent = document.getElementById('form-sent');
-  sent.hidden = false;
-  setTimeout(function () { sent.hidden = true; }, 6000);
+  function mailtoFallback() {
+    var subject = 'Booking request — ' + name;
+    var body =
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Event date: ' + date + '\n' +
+      'Venue / town: ' + venue + '\n\n' +
+      'About the night:\n' + message;
+    window.location.href =
+      'mailto:hello@djcurly.co.uk?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+    showSent();
+  }
+
+  button.disabled = true;
+
+  fetch('https://formsubmit.co/ajax/hello@djcurly.co.uk', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'Booking request — ' + name,
+      _template: 'table',
+      Name: name,
+      Email: email,
+      'Event date': date,
+      'Venue / town': venue,
+      'About the night': message
+    })
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('formsubmit ' + res.status);
+      return res.json();
+    })
+    .then(function () { showSent(); })
+    .catch(function () { mailtoFallback(); })
+    .finally(function () { button.disabled = false; });
 });
