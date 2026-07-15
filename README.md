@@ -7,10 +7,13 @@ One-page website for DJ Curly: soul, disco, boogie and funk on original vinyl, o
 This is a plain static website — no build step, no dependencies, no server-side code.
 
 ```
-index.html    The whole site (single page)
+index.html    The whole site (single page, includes SEO/AEO structured data)
 styles.css    All styling, responsive down to mobile
-script.js     Booking form handler (opens a pre-filled email to hello@djcurly.co.uk)
-assets/       All photos and images
+script.js     Booking form handler (emails requests to hello@djcurly.co.uk)
+robots.txt    Crawler rules + sitemap location
+sitemap.xml   Sitemap for search engines
+llms.txt      Plain-language site summary for AI assistants (AEO)
+assets/       All photos, fonts and favicons
 design/       Original Claude Design handoff bundle (reference only — not served)
 ```
 

@@ -321,6 +321,7 @@ a.contact-row:hover { color: var(--cream); }
 .bg-pink { background: var(--pink); }
 .bg-yellow { background: var(--yellow); color: var(--ink); }
 .bg-purple { background: var(--purple); }
+.bg-whatsapp { background: #25d366; color: #fff; }
 .socials { margin-top: 40px; display: flex; gap: 12px; }
 .social-btn {
   width: 44px; height: 44px; border-radius: 999px;
