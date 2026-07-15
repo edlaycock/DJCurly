@@ -1,0 +1,48 @@
+# DJ Curly — djcurly.co.uk
+
+One-page website for DJ Curly: soul, disco, boogie and funk on original vinyl, out of Hersham, Surrey.
+
+## What's here
+
+This is a plain static website — no build step, no dependencies, no server-side code.
+
+```
+index.html    The whole site (single page)
+styles.css    All styling, responsive down to mobile
+script.js     Booking form handler (opens a pre-filled email to hello@djcurly.co.uk)
+assets/       All photos and images
+design/       Original Claude Design handoff bundle (reference only — not served)
+```
+
+## Going live
+
+Point any web server at the repository root (or copy the files into your web root). For example:
+
+```bash
+git clone https://github.com/edlaycock/DJCurly.git
+# then serve index.html, styles.css, script.js and assets/ from your web root
+```
+
+Works on any host: Apache/nginx, cPanel, GitHub Pages, Netlify, Cloudflare Pages, etc.
+The `design/` folder doesn't need to be deployed.
+
+To preview locally:
+
+```bash
+cd DJCurly
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+
+## Editing content
+
+Everything editable lives in `index.html`:
+
+- **Gigs** — the "Where to find Curly" list (`<ul class="gig-list">`)
+- **Testimonials** — the three `<blockquote class="t-card">` blocks
+- **Track ticker** — the pink marquee (edit both `.ticker-group` copies so the loop stays seamless)
+- **Contact details** — phone, email and location in the "Book the night" section
+- **Social links** — the Instagram/Facebook buttons are placeholders (`href="#"`); drop in the real profile URLs
+- **Photos** — swap files in `assets/` (keep the same filenames, or update the `src` in `index.html`)
+
+The booking form has no backend: submitting opens the visitor's email app with the details pre-filled, addressed to hello@djcurly.co.uk. If you'd rather receive submissions without relying on the visitor's email client, wire the form to a service such as Formspree or a small server-side handler.
