@@ -283,6 +283,29 @@ input::placeholder, textarea::placeholder { color: hsl(20 15% 55%); }
 .gigs-insta svg { flex: none; }
 .gigs-insta:hover { color: var(--pink); }
 
+/* ============ RESIDENT DJ ============ */
+.residencies { position: relative; padding: 128px 0; }
+.residencies-head { margin-bottom: 48px; }
+.residencies-sub { margin: 0; max-width: 40rem; font-size: 18px; line-height: 1.6; color: hsla(20, 30%, 10%, .75); }
+.flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 44rem; margin: 0 auto; }
+.flyer {
+  margin: 0;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1f2b21;
+  box-shadow: 8px 8px 0 0 var(--pink);
+}
+.flyer:nth-child(2) { box-shadow: 8px 8px 0 0 var(--purple); }
+.flyer img { width: 100%; height: auto; display: block; }
+.flyer figcaption {
+  padding: 16px;
+  background: var(--ink); color: var(--cream);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.flyer-venue { font-family: var(--bebas); letter-spacing: .04em; font-size: 20px; }
+.flyer-when { font-size: 14px; color: hsla(38, 50%, 94%, .75); }
+
 /* ============ TESTIMONIALS ============ */
 .testimonials { padding: 128px 0; }
 .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -394,6 +417,7 @@ a.contact-row:hover { color: var(--cream); }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
   .t-grid { grid-template-columns: 1fr; }
   .t-card-pink { transform: none; }
+  .flyer-grid { grid-template-columns: 1fr; max-width: 24rem; gap: 40px; }
   .book-grid { grid-template-columns: 1fr; }
   .mirrorball { width: 128px; height: 128px; top: 24px; right: 24px; opacity: .4; }
   .gig-row { grid-template-columns: 1fr; gap: 8px; }
