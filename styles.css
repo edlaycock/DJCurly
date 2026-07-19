@@ -279,6 +279,9 @@ input::placeholder, textarea::placeholder { color: hsl(20 15% 55%); }
 .gig-cal { text-align: right; }
 .gig-cal svg { opacity: .5; display: inline; }
 .gigs-note { margin: 32px 0 0; font-family: var(--bebas); letter-spacing: .04em; font-size: 18px; color: hsla(20, 30%, 10%, .75); }
+.gigs-insta { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); transition: color .2s; }
+.gigs-insta svg { flex: none; }
+.gigs-insta:hover { color: var(--pink); }
 
 /* ============ TESTIMONIALS ============ */
 .testimonials { padding: 128px 0; }
